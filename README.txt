@@ -14,7 +14,7 @@ Außerdem konnte ich auf dem RaspberryPI kein Sound hören, weshalb ich nicht we
 Wer hat was gemacht?{
 Während ich das PygameZero Spiel "Burgers Game" mit Hilfe der Anleitung programmiert habe,
 ist mir aufgefallen dass meine Idee mit der Grundstrucktur des Burger Games einfacher umzusetzen ist.
-Dabei habe ich mir ein Teilcode des Burger Games zur hilfe genommen.
+Dabei habe ich mir ein Teil des Burger Games zur hilfe genommen.
 Burgers Game: https://pygamezero-burgers.readthedocs.io/en/latest/
 }
 
