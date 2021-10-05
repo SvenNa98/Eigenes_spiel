@@ -19,3 +19,5 @@ Burgers Game: https://pygamezero-burgers.readthedocs.io/en/latest/
 }
 
 Notenwunsch{
+2
+}
