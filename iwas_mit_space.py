@@ -1,21 +1,20 @@
 import pgzrun
 import random
 
-
 TITLE = "iwas mit space"
 WIDTH = 1000
 HEIGHT = 714
 
 SPAWN_ITEM_INTERVAL = 0.5 # 0.5
-ITEM_X_MIN = 250
-ITEM_X_MAX = 750
-FALL_SPEED = 5
+ITEM_X_MIN = 250 #250
+ITEM_X_MAX = 750 #750
+FALL_SPEED = 5 #5
 
-PLAYER_Y = 690
-PLAYER_SPEED = 10
-CATCH_RANGE_X = 80
-CATCH_RANGE_Y = 120
-IMAGE_SIZE = 128
+PLAYER_Y = 690 #690
+PLAYER_SPEED = 10 #10
+CATCH_RANGE_X = 80 #80
+CATCH_RANGE_Y = 120 #120
+IMAGE_SIZE = 128 #128
 
 NUM_ITEM_TYPES = 5
 item_images = ["alien",
@@ -30,6 +29,19 @@ class GameData:
 
 game = GameData()
 
+
+def geme_intro():
+    
+    intro = True
+    
+    while intro:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit
+    
+    
+    
+    
 def start_game():
     game.score = 0
     game.items = []
@@ -77,6 +89,7 @@ def update():
               abs(item.x - game.player.x) < CATCH_RANGE_X and item.item_type == NUM_ITEM_TYPES - 1):
             game.items.remove(item)
             game.player_items.append(item)
+            #sounds.noice.play() #Sound ist bei Raspberry nicht hörbar
             game.score = game.score + 1
     game.stack_height = 1
     for item in game.player_items:
@@ -106,10 +119,10 @@ def hit():
         score = str(game.score)
         print("New Highscore!!!:", score)
         file.write(score)
-        file.close()
+        file.close() 
         
     print("Score:",game.score)
-        
+    
     quit()
     
     
