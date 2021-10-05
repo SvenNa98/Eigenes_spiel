@@ -1,5 +1,5 @@
 import pgzrun
-import random
+import random 
 
 TITLE = "iwas mit space"
 WIDTH = 1000
@@ -17,7 +17,7 @@ CATCH_RANGE_Y = 120 #120
 IMAGE_SIZE = 128 #128
 
 NUM_ITEM_TYPES = 5
-item_images = ["alien",
+item_images = ["alien",    #item bilder
                "meteroied_k",
                "trash",
                "black_hole",
@@ -30,49 +30,29 @@ class GameData:
 game = GameData()
 
 
-def geme_intro():
-    
-    intro = True
-    
-    while intro:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit
-    
-    
-    
     
 def start_game():
-    game.score = 0
-    game.items = []
-    game.player_items = []
+    game.score = 0 #score am start 0
+    game.items = [] #item liste
+    game.player_items = [] #eingesamelte item liste
     game.player = Actor("raumschiff3", (WIDTH/2, PLAYER_Y))
     clock.schedule(spawn_item, SPAWN_ITEM_INTERVAL)
     
-def draw_sequence(sequence, pos_x, pos_y):
-    screen.draw.text(" {0} points".format(),
-      centerx = pos_x + IMAGE_SIZE/2,
-      centery = pos_y + 80,
-      color="orange")
-    for item_type in sequence:
-        screen.blit(item_images[item_type], (pos_x, pos_y))
-        pos_y -= item_heights[item_type]
-
 def draw():
-    screen.blit("background_s",(0,0))
-    for item in game.items:
+    screen.blit("background_s",(0,0)) #hintergrundbild
+    for item in game.items: #items werden angezeigt
         item.draw()
-    game.player.draw()
-    for item in game.player_items:
+    game.player.draw() #raumschiff wird angezeigt
+    for item in game.player_items: #spaceman wird nach catch angezeigt
         item.draw()
         draw_pos = HEIGHT-150
-    screen.draw.text("Score: {0}".format(game.score),
+    screen.draw.text("Score: {0}".format(game.score), #score steht unten
                  centerx = WIDTH/2,
                  bottom = HEIGHT,
                  fontsize=40)
         
 def update():
-    if (keyboard[keys.A] or keyboard[keys.LEFT]):
+    if (keyboard[keys.A] or keyboard[keys.LEFT]): #bewegungen
         game.player.x -= PLAYER_SPEED
     if (keyboard[keys.D] or keyboard[keys.RIGHT]):
         game.player.x += PLAYER_SPEED
@@ -81,42 +61,42 @@ def update():
     if (game.player.x > ITEM_X_MAX):
         game.player.x = ITEM_X_MAX
     
-    for item in list(game.items):
+    for item in list(game.items): #items fallen
         item.y += FALL_SPEED
         if (item.y > HEIGHT):
-            game.items.remove(item)
+            game.items.remove(item) #items werden unter dem bildschirm entfernt
         elif (abs(item.y - (game.player.y - game.stack_height)) < CATCH_RANGE_Y and
-              abs(item.x - game.player.x) < CATCH_RANGE_X and item.item_type == NUM_ITEM_TYPES - 1):
-            game.items.remove(item)
-            game.player_items.append(item)
+              abs(item.x - game.player.x) < CATCH_RANGE_X and item.item_type == NUM_ITEM_TYPES - 1): #spaceman kann gefangen werden
+            game.items.remove(item) #spaceman wird nach catch entfernt
+            game.player_items.append(item) #spaceman wird angehängt
             #sounds.noice.play() #Sound ist bei Raspberry nicht hörbar
-            game.score = game.score + 1
+            game.score = game.score + 1 #score um 1 erhöht
     game.stack_height = 1
-    for item in game.player_items:
+    for item in game.player_items: #spaceman haftet am raumschiff
         item.y = game.player.y - game.stack_height
         item.x = game.player.x
     for item in list(game.items):
-        if item.colliderect(game.player):
-            hit()
+        if item.colliderect(game.player): #items kollidieren 
+            hit() #hit wird ausgeführt
         
         
-def spawn_item():
-    item_type = random.randint(0, NUM_ITEM_TYPES-1)
-    new_item = Actor(item_images[item_type], (random.randint(ITEM_X_MIN, ITEM_X_MAX),50)) #lässt random fallen
+def spawn_item(): #spawnt items und lässt sie random fallen
+    item_type = random.randint(0, NUM_ITEM_TYPES-1) 
+    new_item = Actor(item_images[item_type], (random.randint(ITEM_X_MIN, ITEM_X_MAX),50))
     new_item.item_type = item_type
     game.items.append(new_item)
     clock.schedule(spawn_item, SPAWN_ITEM_INTERVAL)
 
-def hit():
+def hit(): #wenn Raumschiff getroffen wird
     print ("GAME OVER")
-    file = open("highscore.txt", "r")
-    score = file.read()
-    print("Highscore:", score)
+    file = open("highscore.txt", "r") #öffnet highscore.txt zum lesen
+    score = file.read() #liest highscore
+    print("Highscore:", score) 
     file.close()
     
-    if (game.score > int(score)):
-        file = open("highscore.txt", "w")
-        score = str(game.score)
+    if (game.score > int(score)): #wenn neuer highscore
+        file = open("highscore.txt", "w") #öffnet highscore.txt zum schreiben
+        score = str(game.score) #schreibt neuen highscore in txt
         print("New Highscore!!!:", score)
         file.write(score)
         file.close() 
