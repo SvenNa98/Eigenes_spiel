@@ -38,8 +38,7 @@ def start_game():
     game.player_items = [] #eingesamelte item liste
     game.player = Actor("raumschiff3", (WIDTH/2, PLAYER_Y))
     clock.schedule(spawn_item, SPAWN_ITEM_INTERVAL)
-    sounds.dnb.play()
-    
+   
 def draw():
     screen.blit("background_s",(0,0)) #hintergrundbild
     for item in game.items: #items werden angezeigt
