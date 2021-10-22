@@ -8,7 +8,6 @@ Der Score wird erhöht wenn man die Astronauten rettet.
 Welche Probleme gab es?
 Es gab mehrmals kleinere Probleme den vorlagencode von dem Burgergame so anzupassen dass ich meine Spielidee umsetzen kann.
 Ich hatte auch einige Bilder nicht richtig zugeschnitten und dieses Problem erst nach langem grübeln bemerkt.
-Außerdem konnte ich auf dem RaspberryPI kein Sound hören, weshalb ich nicht weiß ob er funktioniert und ihn deshalb auskommentiert habe.
 
 
 Wer hat was gemacht?
